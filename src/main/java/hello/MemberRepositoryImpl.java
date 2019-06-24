@@ -1,9 +1,15 @@
 package hello;
 
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.springframework.stereotype.Repository;
+import org.sql2o.connectionsources.DataSourceConnectionSource;
 
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
@@ -18,6 +24,18 @@ public class MemberRepositoryImpl implements MemberRepository {
             return con.createQuery(sql)
                       .addParameter("name", memberName)
                       .executeAndFetchFirst(Member.class);
+        }
+    }
+
+    @Override
+    public void update(String name, int count) {
+        String sql = "Update member SET count=:count where name=:name";
+
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+               .addParameter("name", name)
+               .addParameter("count", count)
+               .executeUpdate();
         }
     }
 

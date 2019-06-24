@@ -15,10 +15,12 @@ public class GreetingController {
 
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private MemberService memberService;
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        var member = memberRepository.findMember("test");
+        var member = memberService.update("test");
 
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name, member.getName()));

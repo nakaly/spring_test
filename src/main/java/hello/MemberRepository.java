@@ -1,5 +1,6 @@
 package hello;
 
 public interface MemberRepository {
-    public Member findMember(String memberName);
+     Member findMember(String memberName);
+     void update(String name, int count);
 }
