@@ -39,4 +39,14 @@ public class MemberRepositoryImpl implements MemberRepository {
         }
     }
 
+    @Override
+    public void update(Connection con, String name, int count) {
+        String sql = "Update member SET count=:count where name=:name";
+        con.createQuery(sql)
+           .addParameter("name", name)
+           .addParameter("count", count)
+           .executeUpdate();
+
+    }
+
 }

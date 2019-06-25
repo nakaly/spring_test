@@ -44,7 +44,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.sql2o:sql2o:1.6.0")
-    compile("org.apache.commons:commons-dbcp2:2.1.1")
+    compile("org.apache.commons:commons-dbcp2:2.6.0")
     compile("mysql:mysql-connector-java:6.0.6")
 
     // Use JUnit test framework
