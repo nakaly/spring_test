@@ -15,7 +15,7 @@ import org.sql2o.Sql2o;
 @EnableTransactionManagement
 public class DatabaseContext implements TransactionManagementConfigurer {
 
-    @Bean
+    @Bean(name = "test")
     public DataSource dataSource() {
         return DataSourceBuilder.create()
                          .driverClassName("com.mysql.cj.jdbc.Driver")
