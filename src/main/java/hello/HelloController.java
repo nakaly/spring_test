@@ -19,4 +19,18 @@ public class HelloController {
                 HelloService.Iface.class);
         return helloService.hello(name);
     }
+
+    @GetMapping("hello/async/{name}")
+    String helloAsync(@PathVariable String name) throws TException {
+        final HelloService.Iface helloService = Clients.newClient(
+                "tbinary+http://localhost:8080/thrift/hello/async",
+                HelloService.Iface.class);
+        return helloService.hello(name);
+    }
+
+    @GetMapping("spring/hello/{name}")
+    String springHello(@PathVariable String name) throws InterruptedException {
+        Thread.sleep(500);
+        return "name:" + name;
+    }
 }

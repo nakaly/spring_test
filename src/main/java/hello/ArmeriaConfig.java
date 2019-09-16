@@ -46,4 +46,14 @@ public class ArmeriaConfig {
                 .setServiceName("HelloService")
                 .setExampleRequests(ImmutableList.of(new HelloService.hello_args("foo")));
     }
+
+    @Bean
+    public ThriftServiceRegistrationBean asyncHelloService(HelloService.AsyncIface asyncHelloService) {
+        return new ThriftServiceRegistrationBean()
+                .setPath("/thrift/hello/async")
+                .setService(THttpService.of(asyncHelloService))
+                .setServiceName("asyncHelloService")
+                .setExampleRequests(ImmutableList.of(new HelloService.hello_args("foo")));
+
+    }
 }
